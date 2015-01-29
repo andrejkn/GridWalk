@@ -17,5 +17,14 @@ public class Main {
 		
 		Grid grid = new Grid(gBp);
 		System.out.println(grid);
+		
+		Point2D p1 = new Point2D(1,2);
+		Point2D p2 = new Point2D(1,2);
+		Point2D p3 = new Point2D(3,2);
+		
+		if(p1.equals(p2)) {
+			System.out.println("p1==p2");
+		}
+		
 	}
 }

@@ -20,4 +20,18 @@ public class Point2D {
 	public String toString() {
 		return "(" + x + ", " + y + ")";
 	}
+	
+	@Override
+	public boolean equals(Object p) {
+		if(!(p instanceof Point2D)) {
+			return false;
+		}
+		
+		if( ((Point2D)p).getX() == this.x && ((Point2D)p).getY() == this.y) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 }

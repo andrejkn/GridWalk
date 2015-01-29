@@ -57,7 +57,7 @@ public class Grid {
 
 	public String toString() {
 		String line = "";
-		for(int i = 0; i < gridFieldMatrix[0].length; i += 1) {
+		for(int i = 0; i < width; i += 1) {
 			if(i == 0) line += "|";
 			line += "=";
 		}
