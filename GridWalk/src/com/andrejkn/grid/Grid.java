@@ -44,15 +44,22 @@ public class Grid {
 		return null;
 	}
 	
-	private Field getField(int x, int y) {
+	public Field getField(int x, int y) {
 		Field selected = null;
 		
 		try {
 			selected = this.gridFieldMatrix[y][x];
 		} catch(ArrayIndexOutOfBoundsException ex) {
-			System.err.println(ex.getStackTrace());
+			ex.printStackTrace();
 		}
 		return selected;
+	}
+	
+	public Field getField(Point2D point) {
+		int x = point.getX();
+		int y = point.getY();
+		
+		return getField(x, y);
 	}
 
 	public String toString() {

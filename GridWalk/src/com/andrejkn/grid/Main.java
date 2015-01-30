@@ -1,5 +1,7 @@
 package com.andrejkn.grid;
 
+import com.andrejkn.grid.pathFinding.AStar;
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -16,15 +18,10 @@ public class Main {
 				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}};
 		
 		Grid grid = new Grid(gBp);
-		System.out.println(grid);
+		Point2D start = new Point2D(11, 9);
+		Point2D goal = new Point2D(1,2);
 		
-		Point2D p1 = new Point2D(1,2);
-		Point2D p2 = new Point2D(1,2);
-		Point2D p3 = new Point2D(3,2);
-		
-		if(p1.equals(p2)) {
-			System.out.println("p1==p2");
-		}
+		AStar.findShortestPath(grid, start, goal);
 		
 	}
 }
