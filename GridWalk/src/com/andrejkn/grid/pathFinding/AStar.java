@@ -41,10 +41,22 @@ public class AStar {
 			
 			List<Field> adjacents = grid.adjacents(current);
 			
-			if(adjacents.isEmpty()) {
+			boolean hasOpenAdjacent = false;
+			for(Field adj : adjacents) {
+				if(!closed.contains(adj)) {
+					hasOpenAdjacent = true;
+					break;
+				}
+			}
+					
+			if(adjacents.isEmpty() || !hasOpenAdjacent) {
+				System.out.println("yees");
 				current = findParentWithAdjacents(grid, current);
 				adjacents = grid.adjacents(current);
+			} else {
+				System.out.println("nooooo");
 			}
+			
 			
 			System.out.println("Current = " + current);
 			System.out.print("Adjacents = ");
@@ -109,12 +121,13 @@ public class AStar {
 	
 	private static Field findParentWithAdjacents(Grid grid, Field current) {
 		List<Field> adjacents = new LinkedList<Field>();
+		Field cField = current;
 		
 		while(adjacents.isEmpty()) {
-			adjacents = grid.adjacents(current);
-			current = parentFields.get(current);
+			adjacents = grid.adjacents(cField);
+			cField = parentFields.get(cField);
 		}
 
-		return current;
+		return cField;
 	}
 }
