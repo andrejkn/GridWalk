@@ -21,5 +21,9 @@ public class Field extends Point2D {
 	public FieldType type() {
 		return type;
 	}
+	
+	public void visit() {
+		this.status = FieldStatus.Visited;
+	}
 
 }

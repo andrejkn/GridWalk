@@ -21,7 +21,10 @@ public class Main {
 		Point2D start = new Point2D(11, 9);
 		Point2D goal = new Point2D(1,2);
 		
+		System.out.println(grid);
 		AStar.findShortestPath(grid, start, goal);
+		System.out.println("-----------");
+		System.out.println(grid);
 		
 	}
 }

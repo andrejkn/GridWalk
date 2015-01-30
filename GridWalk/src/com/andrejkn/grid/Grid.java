@@ -28,9 +28,9 @@ public class Grid {
 	
 	public List<Field> adjacents(Point2D gridPoint) {
 		int startX = (gridPoint.getX() > 0) ? gridPoint.getX() - 1 : 0;
-		int endX = (gridPoint.getX() <= width - 1) ? gridPoint.getX() + 1 : width - 1;
+		int endX = (gridPoint.getX() < width - 1) ? gridPoint.getX() + 1 : width - 1;
 		int startY = (gridPoint.getY() > 0) ? gridPoint.getY() - 1 : 0;
-		int endY = (gridPoint.getY() <= height - 1) ? gridPoint.getY() + 1 : height - 1;
+		int endY = (gridPoint.getY() < height - 1) ? gridPoint.getY() + 1 : height - 1;
 		
 		List<Field> adjacents = new LinkedList<Field>();
 		
@@ -41,7 +41,7 @@ public class Grid {
 				}
 			}
 		}
-		return null;
+		return adjacents;
 	}
 	
 	public Field getField(int x, int y) {
@@ -76,7 +76,11 @@ public class Grid {
 			for(int j = 0; j < width; j += 1) {
 				if(j == 0) toRet += "|";
 				if(gridFieldMatrix[i][j].type() == FieldType.Walkable) {
-					toRet += " ";
+					if(gridFieldMatrix[i][j].status == FieldStatus.Visited) {
+						toRet += "#";
+					} else {
+						toRet += " ";
+					}
 				} else {
 					toRet += "X";
 				}
