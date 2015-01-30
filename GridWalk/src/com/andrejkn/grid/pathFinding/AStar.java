@@ -14,7 +14,6 @@ public class AStar {
 	private static HashMap<Field, Integer> hValue = new HashMap<Field, Integer>();
 	private static HashMap<Field, Integer> fValue = new HashMap<Field, Integer>();
 
-	
 	private static HashMap<Field, Field> parentFields = new HashMap<Field, Field>();
 	
 	public static void findShortestPath(Grid grid, Point2D start, Point2D goal) {
@@ -32,12 +31,28 @@ public class AStar {
 		
 		while(!open.isEmpty()) {
 			Field current = chooseFieldWithGreatestFValue(open);
+			
+			if(current.equals(goalField)) {
+				System.out.println("Reached the goal " + goalField);
+				break;
+			}
+			
 			open.clear();
 			
 			List<Field> adjacents = grid.adjacents(current);
 			
+			if(adjacents.isEmpty()) {
+				current = findParentWithAdjacents(grid, current);
+				adjacents = grid.adjacents(current);
+			}
+			
+			System.out.println("Current = " + current);
+			System.out.print("Adjacents = ");
+
 			for(Field adj : adjacents) {
 				if(!closed.contains(adj)) {
+					System.out.print(adj + ", ");
+
 					parentFields.put(adj, current);
 					gValue.put(adj, calculateGValue(current, adj));
 					hValue.put(adj, calculateHValue(adj, goalField));
@@ -45,6 +60,7 @@ public class AStar {
 					open.add(adj);
 				}
 			}
+			System.out.println();
 			
 			closed.add(current);
 			current.visit();
@@ -65,7 +81,7 @@ public class AStar {
 	
 	private static int calculateHValue(Field a, Field b) {
 		// Calculate the heuristic distance from field a to b
-		// the amount of fields horizontally and vertically
+		//  the amount of fields horizontally and vertically
 		int xDiff = Math.abs(b.getX() - a.getX());
 		int yDiff = Math.abs(b.getY() - a.getY());
 		return xDiff + yDiff;
@@ -83,11 +99,22 @@ public class AStar {
 		for(Field current : fields) {
 			if(chosen == null) {
 				chosen = current;
-			} else if(fValue.get(chosen) < fValue.get(current)){
+			} else if(fValue.get(chosen) >= fValue.get(current)){
 				chosen = current;
 			}
 		}
 		
 		return chosen;
+	}
+	
+	private static Field findParentWithAdjacents(Grid grid, Field current) {
+		List<Field> adjacents = new LinkedList<Field>();
+		
+		while(adjacents.isEmpty()) {
+			adjacents = grid.adjacents(current);
+			current = parentFields.get(current);
+		}
+
+		return current;
 	}
 }

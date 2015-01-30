@@ -25,5 +25,13 @@ public class Field extends Point2D {
 	public void visit() {
 		this.status = FieldStatus.Visited;
 	}
+	
+	public boolean isVisited() {
+		return this.status == FieldStatus.Visited;
+	}
+	
+	public boolean isWalkable() {
+		return this.type == FieldType.Walkable;
+	}
 
 }

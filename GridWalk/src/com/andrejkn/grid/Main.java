@@ -7,7 +7,7 @@ public class Main {
 	public static void main(String[] args) {
 		int[][] gBp = {
 				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,1},
+				{1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,1},
 				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
 				{0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,1,1,1,1,1,1,1,0,1},
 				{1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,1},
@@ -19,11 +19,10 @@ public class Main {
 		
 		Grid grid = new Grid(gBp);
 		Point2D start = new Point2D(11, 9);
-		Point2D goal = new Point2D(1,2);
+		Point2D goal = new Point2D(1,0);
 		
 		System.out.println(grid);
 		AStar.findShortestPath(grid, start, goal);
-		System.out.println("-----------");
 		System.out.println(grid);
 		
 	}

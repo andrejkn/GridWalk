@@ -36,8 +36,9 @@ public class Grid {
 		
 		for(int y = startY; y <= endY; y += 1) {
 			for(int x = startX; x <= endX; x += 1) {
-				if(gridPoint.getX() != x && gridPoint.getY() != y) {
-					adjacents.add(this.getField(x, y));
+				Field adjField = this.getField(x, y);
+				if(adjField.isWalkable() && !adjField.equals(gridPoint)) {
+					adjacents.add(adjField);
 				}
 			}
 		}
