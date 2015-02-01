@@ -50,20 +50,16 @@ public class AStar {
 			}
 					
 			if(adjacents.isEmpty() || !hasOpenAdjacent) {
-				System.out.println("yees");
 				current = findParentWithAdjacents(grid, current);
 				adjacents = grid.adjacents(current);
-			} else {
-				System.out.println("nooooo");
-			}
+			}			
 			
-			
-			System.out.println("Current = " + current);
-			System.out.print("Adjacents = ");
+//			System.out.println("Current = " + current);
+//			System.out.print("Adjacents = ");
 
 			for(Field adj : adjacents) {
 				if(!closed.contains(adj)) {
-					System.out.print(adj + ", ");
+//					System.out.print(adj + ", ");
 
 					parentFields.put(adj, current);
 					gValue.put(adj, calculateGValue(current, adj));
@@ -72,7 +68,7 @@ public class AStar {
 					open.add(adj);
 				}
 			}
-			System.out.println();
+//			System.out.println();
 			
 			closed.add(current);
 			current.visit();

@@ -78,17 +78,18 @@ public class Grid {
 				if(j == 0) toRet += "|";
 				if(gridFieldMatrix[i][j].type() == FieldType.Walkable) {
 					if(gridFieldMatrix[i][j].status == FieldStatus.Visited) {
-						toRet += "#";
+						toRet += "o";
 					} else {
 						toRet += " ";
 					}
 				} else {
-					toRet += "X";
+					toRet += "#";
 				}
 			}
 			toRet += "|\n";
 		}
 		
 		return line + toRet + line;
+		
 	}
 }
